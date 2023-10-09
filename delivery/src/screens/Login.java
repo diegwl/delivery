@@ -13,8 +13,9 @@ public class Login extends JPanel {
     User loggedUser;
     TextField nome = new TextField();
     TextField cpf = new TextField();
-    Text nomeLabel = new Text("nome", 250,80,100,20, Color.CYAN);
-    Text cpfLabel = new Text("cpf", 250,180,40,20, Color.CYAN);
+    Text nomeLabel = new Text("nome", 250,180,100,20, Color.CYAN);
+    Text cpfLabel = new Text("cpf", 250,280,40,20, Color.CYAN);
+    Text title = new Text("DELIVERY", 280,100,250,60, Color.CYAN, Font.BOLD, 50);
 
     public User getLoggedUser(){
         return loggedUser;
@@ -30,12 +31,13 @@ public class Login extends JPanel {
 
     public Login(ArrayList<User> usuarios, Color color){
         this.usuarios = usuarios;
-        nome.setBounds(250,100, 300,22);
-        cpf.setBounds(250,200, 300,22);
+        nome.setBounds(250,200, 300,22);
+        cpf.setBounds(250,300, 300,22);
         add(nomeLabel);
         add(cpfLabel);
         add(nome);
         add(cpf);
+        add(title);
         setBackground(color);
         setLayout(null);
         setVisible(true);

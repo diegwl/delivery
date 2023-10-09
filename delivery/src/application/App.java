@@ -28,12 +28,12 @@ public class App extends JFrame {
     Button voltarResLogar = new Button("voltar");
     Button voltarFoodLogar = new Button("voltar");
     Button registerU = new Button("registar");
-    Button registerR = new Button("registar restaurante");
-    Button registerF = new Button("registar comida");
+    Button registerR = new Button("cadastrar restaurante");
+    Button registerF = new Button("cadastrar comida");
     Button registerUserButton = new Button("Register User");
     Button registerRestButton = new Button("Register Restaurant");
     Button registerFoodButton = new Button("Register Food");
-    Button deslogar = new Button("deslogin");
+    Button deslogar = new Button("logout");
     Button carrinho = new Button("carrinho");
     Button comprar = new Button("finalizar");
     Button voltar = new Button("Voltar");
@@ -75,14 +75,15 @@ public class App extends JFrame {
         setLayout(null);
         setResizable(false);
 
+        //register
         voltarLogar.setBounds(10, 10 , 100, 50);
         registerUserButton.setBounds(200, 400, 100, 50);
 
         //login
-        logar.setBounds(100, 300, 100, 50);
-        registerU.setBounds(300, 300,100,50);
-        registerR.setBounds(100, 400, 150, 50);
-        registerF.setBounds(250, 400, 150, 50);
+        logar.setBounds(250, 400, 150, 50);
+        registerU.setBounds(400, 400,150,50);
+        registerR.setBounds(250, 500, 150, 50);
+        registerF.setBounds(400, 500, 150, 50);
 
         //SHOPPING
         deslogar.setBounds(10,10,100,50);
@@ -102,6 +103,12 @@ public class App extends JFrame {
         //REGISTER COMIDA
         registerFoodButton.setBounds(100, 300, 300, 50);
         voltarFoodLogar.setBounds(10, 10 , 100, 50);
+
+        //LOGIN
+        login.add(logar);
+        login.add(registerU);
+        login.add(registerR);
+        login.add(registerF);
 
         setVisible(true);
     }
