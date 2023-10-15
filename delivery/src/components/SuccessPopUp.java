@@ -2,8 +2,8 @@ package components;
 
 import javax.swing.*;
 
-public class Success extends JCheckBox {
-    public Success(String title, String message){
+public class SuccessPopUp extends JCheckBox {
+    public SuccessPopUp(String title, String message){
         JOptionPane.showMessageDialog(new JFrame(), message, title,
                 JOptionPane.INFORMATION_MESSAGE);
     }
