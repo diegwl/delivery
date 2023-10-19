@@ -29,10 +29,10 @@ public class App extends JFrame {
     Login login = new Login(users, Color.BLUE);
     Shopping shopping = new Shopping(restaurants, orders, new Color(0x8F3060));
     ShoppingCart cart = new ShoppingCart(restaurants, orders, new Color(0x71379F));
-    RegisterUser registerUser = new RegisterUser(new Color(0xB71E44));
+    RegisterUser registerUser = new RegisterUser(new Color(0x281182));
     Quietus quietus = new Quietus(new Color(0xE5B678));
-    RegisterRest registerRest = new RegisterRest(restaurants, new Color(0xB61C1C));
-    RegisterFood registerFood = new RegisterFood(restaurants, new Color(0x8C1D1D));
+    RegisterRest registerRest = new RegisterRest(restaurants, new Color(0x0a40ab));
+    RegisterFood registerFood = new RegisterFood(restaurants, new Color(0x0a40ab));
 
     // COMPONENTS
     BasicConfigs bc = new BasicConfigs();
@@ -90,7 +90,7 @@ public class App extends JFrame {
 
         //register
         voltarLogar.setBounds(10, 10 , 100, 50);
-        registerUserButton.setBounds(200, 400, 100, 50);
+        registerUserButton.setBounds(350, 520, 100, 50);
 
         //login
         logar.setBounds(250, 400, 150, 50);
@@ -110,11 +110,11 @@ public class App extends JFrame {
         ok.setBounds(380, 700, 100, 50);
 
         //REGISTER RESTAURANT
-        registerRestButton.setBounds(100, 300, 300, 50);
+        registerRestButton.setBounds(250, 420, 300, 50);
         voltarResLogar.setBounds(10, 10 , 100, 50);
 
         //REGISTER COMIDA
-        registerFoodButton.setBounds(100, 300, 300, 50);
+        registerFoodButton.setBounds(250, 420, 300, 50);
         voltarFoodLogar.setBounds(10, 10 , 100, 50);
 
         addBasicConfigsRestaurants();

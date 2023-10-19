@@ -59,14 +59,14 @@ public class RegisterFood extends JPanel {
         borderName.setTitleJustification(TitledBorder.CENTER);
 
         borderPrice = BorderFactory.createTitledBorder(blackline,"Food Price");
-        borderPrice.setTitleJustification(TitledBorder.LEFT);
+        borderPrice.setTitleJustification(TitledBorder.CENTER);
 
-        nome.setBounds(100, 150, 300, 37);
+        nome.setBounds(250, 270, 300, 39);
         nome.setBorder(borderName);
-        price.setBounds(100, 200, 150, 37);
+        price.setBounds(250, 320, 300, 39);
         price.setBorder(borderPrice);
 
-        restaurantsComboBox.setBounds(100, 100, 300, 22);
+        restaurantsComboBox.setBounds(250, 220, 300, 24);
         restaurantsComboBox.addItemListener(e->{
             if (e.getStateChange() == ItemEvent.SELECTED){
                 selectRestaurant((String) e.getItem());

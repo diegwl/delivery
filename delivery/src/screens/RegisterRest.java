@@ -52,11 +52,11 @@ public class RegisterRest extends JPanel {
         borderY.setTitleJustification(TitledBorder.CENTER);
 
 
-        nome.setBounds(100,100, 300,37);
+        nome.setBounds(250,220, 300,39);
         nome.setBorder(borderName);
-        x.setBounds(100,200, 150,37);
+        x.setBounds(250,320, 150,39);
         x.setBorder(borderX);
-        y.setBounds(250,200, 150,37);
+        y.setBounds(400,320, 150,39);
         y.setBorder(borderY);
 
         x.addKeyListener(new KeyAdapter() {

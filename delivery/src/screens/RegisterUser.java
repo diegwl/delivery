@@ -4,20 +4,18 @@ import entities.Status;
 import entities.User;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 
 public class RegisterUser extends JPanel {
-    private TextField nome = new TextField();
-    private TextField cpf = new TextField();
-    private JLabel nomeLabel = new JLabel("nome");
-    private JLabel cpfLabel = new JLabel("cpf");
-    private TextField x = new TextField();
-    private TextField y = new TextField();
-    private JLabel xLabel = new JLabel("x");
-    private JLabel yLabel = new JLabel("y");
+    private JTextField nome = new JTextField();
+    private JTextField cpf = new JTextField();
+    private JTextField x = new JTextField();
+    private JTextField y = new JTextField();
     private JLabel isAdmLabel = new JLabel("is ADM");
     private JCheckBox isAdmBox = new JCheckBox();
     private boolean isAdm = false;
@@ -63,22 +61,38 @@ public class RegisterUser extends JPanel {
     }
 
     public RegisterUser(Color color){
+        Border blackline;
 
-        nomeLabel.setForeground(Color.ORANGE);
-        cpfLabel.setForeground(Color.ORANGE);
-        nomeLabel.setBounds(100,80,40,20);
-        cpfLabel.setBounds(100,180,40,20);
-        nome.setBounds(100,100, 100,50);
-        cpf.setBounds(100,200, 100,50);
-        xLabel.setForeground(Color.ORANGE);
-        yLabel.setForeground(Color.ORANGE);
-        xLabel.setBounds(210,80,40,20);
-        yLabel.setBounds(310,80,40,20);
-        x.setBounds(210,100, 100,50);
-        y.setBounds(310,100, 100,50);
+        blackline = BorderFactory.createLineBorder(Color.BLACK);
+        TitledBorder borderName, borderX, borderY, borderCpf;
+
+        borderName = BorderFactory.createTitledBorder(blackline,"Name");
+        borderName.setTitleJustification(TitledBorder.CENTER);
+
+        borderCpf = BorderFactory.createTitledBorder(blackline,"CPF");
+        borderCpf.setTitleJustification(TitledBorder.CENTER);
+
+        borderX = BorderFactory.createTitledBorder(blackline,"X");
+        borderX.setTitleJustification(TitledBorder.CENTER);
+
+        borderY = BorderFactory.createTitledBorder(blackline,"Y");
+        borderY.setTitleJustification(TitledBorder.CENTER);
+
+        nome.setBounds(250,220, 270,39);
+        nome.setBorder(borderName);
+
+        cpf.setBounds(250,320, 100,50);
+        cpf.setBorder(borderCpf);
+
+        x.setBounds(360,320, 100,50);
+        x.setBorder(borderX);
+
+        y.setBounds(460,320, 100,50);
+        y.setBorder(borderY);
+
         isAdmLabel.setForeground(Color.ORANGE);
-        isAdmLabel.setBounds(210,180,40,20);
-        isAdmBox.setBounds(210,200,20,20);
+        isAdmLabel.setBounds(525,215,40,20);
+        isAdmBox.setBounds(525,235,20,20);
 
         x.addKeyListener(new KeyAdapter() {
             @Override
@@ -107,11 +121,7 @@ public class RegisterUser extends JPanel {
         });
 
         add(x);
-        add(xLabel);
         add(y);
-        add(yLabel);
-        add(nomeLabel);
-        add(cpfLabel);
         add(nome);
         add(cpf);
         add(isAdmLabel);
@@ -128,10 +138,11 @@ public class RegisterUser extends JPanel {
         return user.getRole() == Status.ADM;
     }
     public void clean(){
-        nomeLabel.setText("");
-        cpfLabel.setText("");
-        xLabel.setText("");
-        yLabel.setText("");
+        nome.setText("");
+        cpf.setText("");
+        x.setText("");
+        y.setText("");
+
     }
 
 
