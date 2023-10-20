@@ -24,8 +24,8 @@ public class Shopping extends JPanel  {
     private final JList<String> listaRests = new JList<>(modelRests);
     private final JList<String> listaFoods = new JList<>(modelFoods);
     private final JList<String> listaRequests = new JList<>(modelRequests);
-    private final Button addRequestButton = new Button("/\\",410,612,75,75);
-    private final Button removeRequestButton = new Button("\\/",410,687,75,75);
+    private final Button addRequestButton = new Button("+",560,585,45,45);
+    private final Button removeRequestButton = new Button("-",560,637,45,45);
     private ArrayList<Restaurant> allRestaurants;
     private ArrayList<Order> allRequests;
     private Restaurant selectedRestaurant;
@@ -34,8 +34,8 @@ public class Shopping extends JPanel  {
     private JLabel userName = new JLabel();
     private JLabel selectedFoodPrice = new JLabel();
     private JLabel totalFoodPrice = new JLabel();
-    private Button addToCart = new Button("add to cart", 385,500,100,50);
-    private Button refresh = new Button("refresh", 0, 500, 100, 50);
+    private Button addToCart = new Button("add to cart", 450,425,100,50);
+    private Button refresh = new Button("refresh", 220, 425, 100, 50);
 
     private int idPed = 0;
     private final DecimalFormat df = new DecimalFormat("#.##");
@@ -55,7 +55,7 @@ public class Shopping extends JPanel  {
     }
     public void setDefaultPrices(){
         selectedFoodPrice.setText("Select a food");
-        totalFoodPrice.setText("<html>Total:<br>R$0,00</html>");
+        totalFoodPrice.setText("<html>Total: R$0,00</html>");
         selectedRestaurant = null;
         selectedFood = null;
         listaRests.clearSelection();
@@ -71,6 +71,7 @@ public class Shopping extends JPanel  {
     public Shopping(ArrayList<Restaurant> allRestaurants, ArrayList<Order> allRequests,Color color){
         this.allRestaurants = allRestaurants;
         this.allRequests = allRequests;
+
         Border blackline;
         blackline = BorderFactory.createLineBorder(Color.BLACK);
 
@@ -91,33 +92,33 @@ public class Shopping extends JPanel  {
         listaFoods.setLayoutOrientation(JList.VERTICAL);
         listaRequests.setLayoutOrientation(JList.VERTICAL);
 
-        userName.setLocation(200, 0);
+        userName.setLocation(350, 10);
         userName.setSize(300,50);
-        userName.setForeground(Color.RED);
+        userName.setForeground(Color.BLACK);
         userName.setFont(new Font("arial",Font.BOLD,30));
 
-        selectedFoodPrice.setLocation(255,450);
-        selectedFoodPrice.setSize(300,40);
+        selectedFoodPrice.setLocation(180,460);
+        selectedFoodPrice.setSize(300,100);
         selectedFoodPrice.setText("Select a food");
-        selectedFoodPrice.setForeground(Color.ORANGE);
+        selectedFoodPrice.setForeground(Color.BLACK);
         selectedFoodPrice.setFont(new Font("arial",Font.BOLD,30));
 
-        totalFoodPrice.setLocation(200,500);
-        totalFoodPrice.setSize(200,100);
-        totalFoodPrice.setText("<html>Total:<br>R$0,00</html>");
-        totalFoodPrice.setForeground(Color.ORANGE);
+        totalFoodPrice.setLocation(420,460);
+        totalFoodPrice.setSize(300,100);
+        totalFoodPrice.setText("<html>Total: R$0,00</html>");
+        totalFoodPrice.setForeground(Color.BLACK);
         totalFoodPrice.setFont(new Font("arial",Font.BOLD,30));
 
         scrollPaneRests.setSize(230, 300);
-        scrollPaneRests.setLocation(0,150);
+        scrollPaneRests.setLocation(155,100);
         scrollPaneRests.setBorder(borderRestaurants);
 
         scrollPaneFoods.setSize(229, 300);
-        scrollPaneFoods.setLocation(255, 150);
+        scrollPaneFoods.setLocation(390, 100);
         scrollPaneFoods.setBorder(borderFoods);
 
         scrollPaneRequests.setSize(400,149);
-        scrollPaneRequests.setLocation(0,612);
+        scrollPaneRequests.setLocation(150,562);
         scrollPaneRequests.setBorder(borderRequests);
 
         add(addRequestButton);
@@ -153,7 +154,7 @@ public class Shopping extends JPanel  {
                 totalPrice += p.precoTotal();
             }
         }
-        totalFoodPrice.setText("<html>Total:<br>R$"+df.format(totalPrice).replace(".",",")+"</html>");
+        totalFoodPrice.setText("<html>Total: R$"+df.format(totalPrice).replace(".",",")+"</html>");
     }
     public void addRequest(){
 

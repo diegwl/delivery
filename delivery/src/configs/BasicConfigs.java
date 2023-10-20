@@ -91,7 +91,6 @@ public class BasicConfigs {
                 }catch (ArrayIndexOutOfBoundsException ignored){
 
                 }
-//                System.out.println(r.split(",")[0]);
                 if (Objects.equals(r.split(",")[0], restaurant)){
                     r = r + "-" + foods + food + "," + price + "F;";
                 }else{

@@ -36,7 +36,7 @@ public class Quietus extends JPanel {
         borderQuietus.setTitleJustification(TitledBorder.CENTER);
 
         scrollPaneQuietus.setSize(405,400);
-        scrollPaneQuietus.setLocation(40,100);
+        scrollPaneQuietus.setLocation(190,80);
         scrollPaneQuietus.setBorder(borderQuietus);
 
         add(scrollPaneQuietus);
@@ -69,7 +69,7 @@ public class Quietus extends JPanel {
             }
             subTotal += foodQtd * foodPrice;
             total += foodQtd * foodPrice;
-            modelQuietusPlaceholder.addElement(" -"+foodQtdPrice.replace(",", " ][ "));
+            modelQuietusPlaceholder.addElement(" -"+foodQtdPrice.replace(",", " - "));
         }
         modelQuietusPlaceholder.addElement("subtotal: R$"+ df.format(subTotal));
         modelQuietusPlaceholder.addElement("------------------------------");

@@ -43,7 +43,6 @@ public class Restaurant {
         this.y = y;
     }
     public boolean isAlpha(String name) {
-        System.out.println(name);
         char[] chars = name.toCharArray();
 
         for (char c : chars) {
@@ -54,7 +53,6 @@ public class Restaurant {
                 continue;
             }
             if(!Character.isLetter(c)) {
-//                System.out.println(c);
                 return false;
             }
         }
@@ -62,14 +60,12 @@ public class Restaurant {
         return true;
     }
     public boolean adicionarLanche(String nome, float preco, boolean showMessage){
-//        System.out.println(nome);
         if (preco <= 0){
             new ErrorPopUp("ATENTION","Price is invalid!!!");
             return false;
         }
         for (Food food : getCardapio()){
             if (Objects.equals(nome, food.getNome()) || !isAlpha(nome)){
-//                System.out.println(nome);
                 new ErrorPopUp("ATENTION","It already has a Food with this name, or is invalid");
                 return false;
             }

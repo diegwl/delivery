@@ -4,8 +4,6 @@ import components.Button;
 import components.ErrorPopUp;
 import components.SuccessPopUp;
 import configs.BasicConfigs;
-import configs.CadFoods;
-import configs.CadRes;
 import entities.Order;
 import entities.Restaurant;
 import entities.Status;
@@ -19,20 +17,18 @@ import java.util.Objects;
 
 public class App extends JFrame {
     // LISTS
-    ArrayList<Restaurant> restaurants = new ArrayList<>();
+    ArrayList<Restaurant> rests = new ArrayList<>();
     ArrayList<User> users = new ArrayList<>();
     ArrayList<Order> orders = new ArrayList<>();
-    CadRes cadRes = new CadRes();
-    CadFoods cadFoods = new CadFoods();
 
     // SCREENS
     Login login = new Login(users, Color.BLUE);
-    Shopping shopping = new Shopping(restaurants, orders, new Color(0x8F3060));
-    ShoppingCart cart = new ShoppingCart(restaurants, orders, new Color(0x71379F));
+    Shopping shopping = new Shopping(rests, orders, new Color(0x3237c9));
+    ShoppingCart cart = new ShoppingCart(rests, orders, new Color(0x4132c9));
     RegisterUser registerUser = new RegisterUser(new Color(0x281182));
-    Quietus quietus = new Quietus(new Color(0xE5B678));
-    RegisterRest registerRest = new RegisterRest(restaurants, new Color(0x0a40ab));
-    RegisterFood registerFood = new RegisterFood(restaurants, new Color(0x0a40ab));
+    Quietus quietus = new Quietus(new Color(0x3322c9));
+    RegisterRest registerRest = new RegisterRest(rests, new Color(0x0a40ab));
+    RegisterFood registerFood = new RegisterFood(rests, new Color(0x0a40ab));
 
     // COMPONENTS
     BasicConfigs bc = new BasicConfigs();
@@ -47,7 +43,7 @@ public class App extends JFrame {
     Button registerRestButton = new Button("Register Restaurant");
     Button registerFoodButton = new Button("Register Food");
     Button deslogar = new Button("logout");
-    Button carrinho = new Button("carrinho");
+    Button carrinho = new Button("cart");
     Button comprar = new Button("finalizar");
     Button voltar = new Button("Voltar");
     Button ok = new Button("OK");
@@ -55,24 +51,16 @@ public class App extends JFrame {
     // IDS
     int idRes = 0;
     int idUser = 0;
-    int idPed = 0;
     public ArrayList<Restaurant> getRestaurants() {
-        return restaurants;
-    }
-
-    public void setRestaurants(ArrayList<Restaurant> restaurants) {
-        this.restaurants = restaurants;
+        return rests;
     }
 
     public ArrayList<Order> getPedidos() {
         return orders;
     }
 
-    public void setPedidos(ArrayList<Order> orders) {
-        this.orders = orders;
-    }
     private Restaurant getRestaurant(String rest){
-        for (Restaurant restaurant: restaurants){
+        for (Restaurant restaurant: rests){
             if (Objects.equals(restaurant.getName(), rest)){
                 return restaurant;
             }
@@ -100,14 +88,14 @@ public class App extends JFrame {
 
         //SHOPPING
         deslogar.setBounds(10,10,100,50);
-        carrinho.setBounds(375,10,100,50);
+        carrinho.setBounds(675,10,100,50);
 
         //cart
-        comprar.setBounds(380, 700, 100, 50);
+        comprar.setBounds(675, 10, 100, 50);
         voltar.setBounds(10, 10, 100, 50);
 
         //QUIETUS
-        ok.setBounds(380, 700, 100, 50);
+        ok.setBounds(350, 500, 100, 50);
 
         //REGISTER RESTAURANT
         registerRestButton.setBounds(250, 420, 300, 50);
@@ -120,9 +108,6 @@ public class App extends JFrame {
         addBasicConfigsRestaurants();
         addBasicConfigsUsers();
         addRoutes();
-        for (User user : users){
-            System.out.println(user.getRole());
-        }
 
         //REGISTER
         registerUser.add(voltarLogar);
@@ -164,27 +149,21 @@ public class App extends JFrame {
                 continue;
             }
             if(!Character.isLetter(c)) {
-                return false;
+                return true;
             }
         }
 
-        return true;
-    }
-    public void cadastrarRestaurante(String[] allInOne, boolean showMessage){
-        cadastrarRestaurante(allInOne[0], Integer.parseInt(allInOne[1]), Integer.parseInt(allInOne[2]), showMessage);
-    }
-    public void cadastrarRestaurante(String[] various){
-        cadastrarRestaurante(various, false);
+        return false;
     }
 
     public boolean cadastrarRestaurante(String nome, int x, int y, boolean showMessage){
-        for (Restaurant rest : restaurants){
-            if (Objects.equals(nome, rest.getName()) || !isAlpha(nome)){
+        for (Restaurant rest : rests){
+            if (Objects.equals(nome, rest.getName()) || isAlpha(nome)){
                 new ErrorPopUp("ATENTITON","It already has a restaurant with this name, or is invalid");
                 return false;
             }
         }
-        restaurants.add(new Restaurant(idRes, nome, x,y));
+        rests.add(new Restaurant(idRes, nome, x,y));
         idRes += 1;
         if (showMessage){
             bc.addRestaurant(nome, x, y);
@@ -194,7 +173,7 @@ public class App extends JFrame {
     }
     public boolean cadastrarUsers(String nome, String CPF, int x, int y, Status status, boolean showMessage){
         for (User user : users){
-            if (Objects.equals(nome, user.getName()) || !isAlpha(nome)){
+            if (Objects.equals(nome, user.getName()) || isAlpha(nome)){
                 new ErrorPopUp("ATENTITON","It already has a User with this name, or is invalid");
                 return false;
             }
@@ -211,10 +190,6 @@ public class App extends JFrame {
         }
         return true;
     }
-    public void cadastrarUsers(String nome, String CPF, int x, int y, boolean showMessage){
-        cadastrarUsers(nome, CPF, x, y, Status.USER, showMessage);
-    }
-
 
     private void addRoutes(){
         // ACTUALLY AN ACTION
@@ -362,24 +337,7 @@ public class App extends JFrame {
         });
 
     }
-    private void addAllUsers(){
-        users.add(new User(idUser, "", "", 10,15, Status.ADM));
-        idUser++;
-        cadastrarUsers("Gustavo", "83", 50,50, false);
-    }
-    private void addAllRestaurants(){
 
-        cadastrarRestaurante(cadRes.FirelinkShrimp(), false);
-        cadastrarRestaurante(cadRes.SolaireSoup(), false);
-        cadastrarRestaurante(cadRes.JohnGourmet(), false);
-        cadastrarRestaurante(cadRes.Dadora(), false);
-    }
-    private void addAllFoods(){
-        cadFoods.firelinkShrimp(restaurants.get(0));
-        cadFoods.solaireSoup(restaurants.get(1));
-        cadFoods.johnGourmet(restaurants.get(2));
-        cadFoods.dadora(restaurants.get(3));
-    }
     private void addBasicConfigsRestaurants(){
         ArrayList<String> restaurants = bc.getRests();
         for (String restaurant : restaurants){

@@ -18,8 +18,6 @@ public class ShoppingCart extends JPanel {
     private JScrollPane scrollPaneRequests = new JScrollPane();
     private final DefaultListModel<String> modelRequests = new DefaultListModel<>();
     private final JList<String> listaRequests = new JList<>(modelRequests);
-    private final Button addRequestButton = new Button("/\\",370,512,75,25);
-    private final Button removeRequestButton = new Button("\\/",370,557,75,25);
     private ArrayList<Restaurant> allRestaurants;
     private ArrayList<Order> allRequests;
     private Restaurant selectedRestaurant;
@@ -40,7 +38,6 @@ public class ShoppingCart extends JPanel {
 
     public void setUser(User user) {
         this.user = user;
-//        System.out.println(user.getName());
         userName.setText(Objects.equals(user.getName(), "") ?"admin":user.getName());
         fieldX.setText(String.valueOf(user.getEndereco()[0]));
         fieldY.setText(String.valueOf(user.getEndereco()[1]));
@@ -79,23 +76,17 @@ public class ShoppingCart extends JPanel {
         textX.setText("X");
         textY.setText("Y");
 
-        textX.setBounds(50, 600, 20,20);
-        textY.setBounds(50, 650, 20,20);
-        fieldX.setBounds(50, 620, 200, 20);
-        fieldY.setBounds(50, 670, 200, 20);
+        textX.setBounds(400, 500, 20,20);
+        textY.setBounds(400, 550, 20,20);
+        fieldX.setBounds(400, 520, 190, 20);
+        fieldY.setBounds(400, 570, 190, 20);
 
-        userName.setLocation(200, 0);
+        userName.setLocation(350, 10);
         userName.setSize(300,50);
-        userName.setForeground(Color.RED);
+        userName.setForeground(Color.BLACK);
         userName.setFont(new Font("arial",Font.BOLD,30));
 
-        selectedFoodPrice.setLocation(255,60);
-        selectedFoodPrice.setSize(300,40);
-        selectedFoodPrice.setText("Select a food");
-        selectedFoodPrice.setForeground(Color.ORANGE);
-        selectedFoodPrice.setFont(new Font("arial",Font.BOLD,30));
-
-        totalFoodPrice.setLocation(40,500);
+        totalFoodPrice.setLocation(190,500);
         totalFoodPrice.setSize(200,100);
         totalFoodPrice.setText("<html>Total:<br>R$0,00</html>");
         totalFoodPrice.setBackground(Color.GREEN);
@@ -103,11 +94,9 @@ public class ShoppingCart extends JPanel {
         totalFoodPrice.setFont(new Font("arial",Font.BOLD,30));
 
         scrollPaneRequests.setSize(405,400);
-        scrollPaneRequests.setLocation(40,100);
+        scrollPaneRequests.setLocation(190,100);
         scrollPaneRequests.setBorder(borderRequests);
 
-        add(addRequestButton);
-        add(removeRequestButton);
         add(totalFoodPrice);
         add(selectedFoodPrice);
         add(scrollPaneRequests);
@@ -136,45 +125,9 @@ public class ShoppingCart extends JPanel {
             }
         }
         totalFoodPrice.setText("<html>Total:<br>R$"+df.format(totalPrice).replace(".",",")+"</html>");
-
-    }
-    public void addRequest(){
-        if (selectedRestaurant == null){
-            return;
-        }
-        if (selectedFood == null){
-            return;
-        }
-        for (Order p : allRequests) {
-            if (p.getUserOrder() == user && !p.isFinished() && p.getRestaurantOrder() == selectedRestaurant) {
-                p.addOrder(selectedFood);
-            }
-        }
-        updatePrice();
-        updateRequests();
-
-
-    }
-    public void removeRequest(){
-        if (selectedRestaurant == null){
-            return;
-        }
-        if (selectedFood == null){
-            return;
-        }
-        for(Order p : allRequests){
-            if (p.getUserOrder() == user && !p.isFinished() && p.getRestaurantOrder() == selectedRestaurant){
-                p.removePedido(selectedFood, true);
-            }
-        }
-
-        updatePrice();
-        updateRequests();
     }
 
     public void updateRequests(){
-
-//        System.out.println("TESTE:       "+modelRequests);
         modelRequests.removeAllElements();
         for (Order p : allRequests) {
             if (p.getUserOrder() == user && !p.isFinished()) {
@@ -197,11 +150,6 @@ public class ShoppingCart extends JPanel {
         totalFoodPrice.setText("<html>Total:<br>R$0,00</html>");
     }
     public void addAllActions() {
-
-
-        addRequestButton.addActionListener(e -> addRequest());
-        removeRequestButton.addActionListener(e -> removeRequest());
-
         listaRequests.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 return;
