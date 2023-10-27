@@ -29,6 +29,7 @@ public class App extends JFrame {
     Quietus quietus = new Quietus(new Color(0x3322c9));
     RegisterRest registerRest = new RegisterRest(rests, new Color(0x0a40ab));
     RegisterFood registerFood = new RegisterFood(rests, new Color(0x0a40ab));
+    Sidebar sidebar = new Sidebar(new Color(0x6434eb));
 
     // COMPONENTS
     BasicConfigs bc = new BasicConfigs();
@@ -47,6 +48,8 @@ public class App extends JFrame {
     Button comprar = new Button("finalizar");
     Button voltar = new Button("Voltar");
     Button ok = new Button("OK");
+
+    JPanel menu = new JPanel();
 
     // IDS
     int idRes = 0;
@@ -71,7 +74,7 @@ public class App extends JFrame {
         super(title);
         setContentPane(login);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800,800);
+        setSize(950,800);
         setLocationRelativeTo(null);
         setLayout(null);
         setResizable(false);
@@ -83,8 +86,10 @@ public class App extends JFrame {
         //login
         logar.setBounds(250, 400, 150, 50);
         registerU.setBounds(400, 400,150,50);
-        registerR.setBounds(250, 500, 150, 50);
-        registerF.setBounds(400, 500, 150, 50);
+
+        //sidebar
+        registerR.setBounds(0, 0, 150, 50);
+        registerF.setBounds(0, 50, 150, 50);
 
         //SHOPPING
         deslogar.setBounds(10,10,100,50);
@@ -116,8 +121,10 @@ public class App extends JFrame {
         //LOGIN
         login.add(logar);
         login.add(registerU);
-        login.add(registerR);
-        login.add(registerF);
+
+        //SIDEBAR
+        sidebar.add(registerR);
+        sidebar.add(registerF);
 
         //SHOPPING
         shopping.add(deslogar);
@@ -137,6 +144,10 @@ public class App extends JFrame {
         //REGISTER COMIDA
         registerFood.add(registerFoodButton);
         registerFood.add(voltarFoodLogar);
+
+        //MENU
+        menu.setBounds(0, 0, 950, 800);
+        menu.setLayout(null);
 
         setVisible(true);
     }
@@ -241,13 +252,19 @@ public class App extends JFrame {
             if (login.getLoggedUser().getRole() != Status.ADM){
                 return;
             }
-            login.setVisible(false);
-            registerRest.setVisible(false);
+            menu.removeAll();
 
             registerFood.setRestaurants(getRestaurants());
             registerFood.refresh();
             registerFood.setVisible(true);
             setContentPane(registerFood);
+            registerFood.setBounds(150, 0, 800, 800);
+            sidebar.setVisible(true);
+
+            menu.add(registerFood);
+            menu.add(sidebar);
+
+            setContentPane(menu);
         });
         // REGISTER RESTAURANT -> LOGIN
         voltarResLogar.addActionListener(e->{
@@ -283,7 +300,16 @@ public class App extends JFrame {
             shopping.setUser(login.getLoggedUser());
             shopping.refresh();
             shopping.setVisible(true);
-            setContentPane(shopping);
+            shopping.setBounds(150, 0, 800, 800);
+            sidebar.setVisible(true);
+
+            menu.removeAll();
+
+            menu.add(shopping);
+            menu.add(sidebar);
+
+            setContentPane(menu);
+
         });
         // SHOPPING -> LOGIN
         deslogar.addActionListener(e ->{
