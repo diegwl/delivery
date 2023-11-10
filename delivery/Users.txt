@@ -1,3 +1,4 @@
 ,,10,10,ADM;
 Diego,1234,10,10,USER;
 
+Angelo,123,22,22,ADM;

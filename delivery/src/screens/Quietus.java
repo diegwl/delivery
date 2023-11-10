@@ -36,7 +36,7 @@ public class Quietus extends JPanel {
         borderQuietus.setTitleJustification(TitledBorder.CENTER);
 
         scrollPaneQuietus.setSize(405,400);
-        scrollPaneQuietus.setLocation(190,80);
+        scrollPaneQuietus.setLocation(240,80);
         scrollPaneQuietus.setBorder(borderQuietus);
 
         add(scrollPaneQuietus);

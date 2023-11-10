@@ -78,21 +78,21 @@ public class RegisterUser extends JPanel {
         borderY = BorderFactory.createTitledBorder(blackline,"Y");
         borderY.setTitleJustification(TitledBorder.CENTER);
 
-        nome.setBounds(250,220, 270,39);
+        nome.setBounds(300,220, 270,39);
         nome.setBorder(borderName);
 
-        cpf.setBounds(250,320, 100,50);
+        cpf.setBounds(300,320, 100,50);
         cpf.setBorder(borderCpf);
 
-        x.setBounds(360,320, 100,50);
+        x.setBounds(410,320, 100,50);
         x.setBorder(borderX);
 
-        y.setBounds(460,320, 100,50);
+        y.setBounds(510,320, 100,50);
         y.setBorder(borderY);
 
         isAdmLabel.setForeground(Color.ORANGE);
-        isAdmLabel.setBounds(525,215,40,20);
-        isAdmBox.setBounds(525,235,20,20);
+        isAdmLabel.setBounds(575,215,40,20);
+        isAdmBox.setBounds(575,235,20,20);
 
         x.addKeyListener(new KeyAdapter() {
             @Override

@@ -35,11 +35,12 @@ public class App extends JFrame {
     BasicConfigs bc = new BasicConfigs();
     Button logar = new Button("login");
     Button voltarLogar = new Button("voltar");
-    Button voltarResLogar = new Button("voltar");
-    Button voltarFoodLogar = new Button("voltar");
-    Button registerU = new Button("registar");
-    Button registerR = new Button("cadastrar restaurante");
-    Button registerF = new Button("cadastrar comida");
+    Button voltarResLogar = new Button("Logout");
+    Button voltarFoodLogar = new Button("Logout");
+    Button registerU = new Button("Registar");
+    Button registerR = new Button("Cadastrar Restaurante");
+    Button registerF = new Button("Cadastrar Comida");
+    Button shoppingButton = new Button("Comprar");
     Button registerUserButton = new Button("Register User");
     Button registerRestButton = new Button("Register Restaurant");
     Button registerFoodButton = new Button("Register Food");
@@ -81,22 +82,23 @@ public class App extends JFrame {
 
         //register
         voltarLogar.setBounds(10, 10 , 100, 50);
-        registerUserButton.setBounds(350, 520, 100, 50);
+        registerUserButton.setBounds(400, 520, 100, 50);
 
         //login
-        logar.setBounds(250, 400, 150, 50);
-        registerU.setBounds(400, 400,150,50);
+        logar.setBounds(300, 400, 150, 50);
+        registerU.setBounds(450, 400,150,50);
 
         //sidebar
         registerR.setBounds(0, 0, 150, 50);
         registerF.setBounds(0, 50, 150, 50);
+        shoppingButton.setBounds(0, 100, 150, 50);
 
         //SHOPPING
         deslogar.setBounds(10,10,100,50);
         carrinho.setBounds(675,10,100,50);
 
         //cart
-        comprar.setBounds(675, 10, 100, 50);
+        comprar.setBounds(825, 10, 100, 50);
         voltar.setBounds(10, 10, 100, 50);
 
         //QUIETUS
@@ -125,6 +127,7 @@ public class App extends JFrame {
         //SIDEBAR
         sidebar.add(registerR);
         sidebar.add(registerF);
+        sidebar.add(shoppingButton);
 
         //SHOPPING
         shopping.add(deslogar);
@@ -231,7 +234,7 @@ public class App extends JFrame {
             registerUser.setVisible(true);
             setContentPane(registerUser);
         });
-        // LOGIN -> REGISTER RESTAURANT
+        // REGISTER RESTAURANT
         registerR.addActionListener(e -> {
             if(!login.logar()){
                 return;
@@ -239,12 +242,19 @@ public class App extends JFrame {
             if (login.getLoggedUser().getRole() != Status.ADM){
                 return;
             }
-            login.setVisible(false);
+            menu.removeAll();
 
             registerRest.setVisible(true);
-            setContentPane(registerRest);
+
+            registerRest.setBounds(150, 0, 800, 800);
+            sidebar.setVisible(true);
+
+            menu.add(registerRest);
+            menu.add(sidebar);
+
+            setContentPane(menu);
         });
-        // LOGIN -> REGISTER COMIDA
+        // REGISTER FOOD
         registerF.addActionListener(e -> {
             if(!login.logar()){
                 return;
@@ -257,11 +267,32 @@ public class App extends JFrame {
             registerFood.setRestaurants(getRestaurants());
             registerFood.refresh();
             registerFood.setVisible(true);
-            setContentPane(registerFood);
+
             registerFood.setBounds(150, 0, 800, 800);
             sidebar.setVisible(true);
 
             menu.add(registerFood);
+            menu.add(sidebar);
+
+            setContentPane(menu);
+        });
+        // SHOPPING
+        shoppingButton.addActionListener(e -> {
+            if(!login.logar()){
+                return;
+            }
+            shopping.setAllRequests(getPedidos());
+            shopping.cleanFood();
+            shopping.setAllRestaurants(getRestaurants());
+            shopping.setUser(login.getLoggedUser());
+            shopping.refresh();
+            shopping.setVisible(true);
+            shopping.setBounds(150, 0, 800, 800);
+            sidebar.setVisible(true);
+
+            menu.removeAll();
+
+            menu.add(shopping);
             menu.add(sidebar);
 
             setContentPane(menu);
@@ -273,7 +304,7 @@ public class App extends JFrame {
             login.setVisible(true);
             setContentPane(login);
         });
-        // REGISTER -> COMIDA LOGIN
+        // REGISTER COMIDA -> LOGIN
         voltarFoodLogar.addActionListener(e->{
             registerFood.setVisible(false);
 
@@ -351,7 +382,14 @@ public class App extends JFrame {
             shopping.updateRequests();
             shopping.updatePrice();
             shopping.setVisible(true);
-            setContentPane(shopping);
+            sidebar.setVisible(true);
+
+            menu.removeAll();
+
+            menu.add(shopping);
+            menu.add(sidebar);
+
+            setContentPane(menu);
         });
         // QUIETUS -> CART
         ok.addActionListener(e->{

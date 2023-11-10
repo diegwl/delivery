@@ -76,17 +76,17 @@ public class ShoppingCart extends JPanel {
         textX.setText("X");
         textY.setText("Y");
 
-        textX.setBounds(400, 500, 20,20);
-        textY.setBounds(400, 550, 20,20);
-        fieldX.setBounds(400, 520, 190, 20);
-        fieldY.setBounds(400, 570, 190, 20);
+        textX.setBounds(450, 500, 20,20);
+        textY.setBounds(450, 550, 20,20);
+        fieldX.setBounds(450, 520, 190, 20);
+        fieldY.setBounds(450, 570, 190, 20);
 
-        userName.setLocation(350, 10);
+        userName.setLocation(400, 10);
         userName.setSize(300,50);
         userName.setForeground(Color.BLACK);
         userName.setFont(new Font("arial",Font.BOLD,30));
 
-        totalFoodPrice.setLocation(190,500);
+        totalFoodPrice.setLocation(240,500);
         totalFoodPrice.setSize(200,100);
         totalFoodPrice.setText("<html>Total:<br>R$0,00</html>");
         totalFoodPrice.setBackground(Color.GREEN);
@@ -94,7 +94,7 @@ public class ShoppingCart extends JPanel {
         totalFoodPrice.setFont(new Font("arial",Font.BOLD,30));
 
         scrollPaneRequests.setSize(405,400);
-        scrollPaneRequests.setLocation(190,100);
+        scrollPaneRequests.setLocation(240,100);
         scrollPaneRequests.setBorder(borderRequests);
 
         add(totalFoodPrice);
