@@ -1,4 +1,6 @@
 ,,10,10,ADM;
 Diego,1234,10,10,USER;
-
 Angelo,123,22,22,ADM;
+diegwl,321,1,2,ADM;
+Fefo,0,0,7,USER;
+nisiq,1,15,16,ADM;

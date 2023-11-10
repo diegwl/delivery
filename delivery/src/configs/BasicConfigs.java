@@ -1,16 +1,20 @@
 package configs;
 
+import entities.Order;
 import entities.Status;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class BasicConfigs {
     String RESTS = "Restaurants.txt";
     String USERS = "Users.txt";
+    String ORDERS = "Orders.txt";
 
     public BasicConfigs(){
 
@@ -109,6 +113,49 @@ public class BasicConfigs {
             fw.close();
 
         } catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public ArrayList<String> getOrders() {
+        try{
+            ArrayList<String> orders = new ArrayList<>();
+            FileReader fr = new FileReader(USERS);
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (line.equals("")){
+                    continue;
+                }
+                orders.add(line);
+            }
+            br.close();
+            fr.close();
+            return orders;
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public void addOrder(ArrayList<Order> requests ){
+        try {
+            ArrayList<String> orders = new ArrayList<>();
+            for (Order request : requests) {
+                String requestStr = request.toString();
+                String[] infos = requestStr.split(", ");
+                orders.add(String.format("(%s, %s, %s)", infos[1], infos[2], infos[3]));
+            }
+            FileWriter fw = new FileWriter(ORDERS, true);
+
+            String finalOrder = "{";
+            for (String order : orders) {
+                finalOrder = finalOrder.concat(order);
+            }
+            fw.write(finalOrder+"};\n");
+
+            fw.close();
+        } catch (Exception e) {
             System.out.println(e);
         }
     }

@@ -1,1 +1,4 @@
 Diegwl Restaurant,0,0-Burger,15.99F;Pizza,29.99F;
+Bar do Tonho,150,150-Porção de Fritas,22.0F;Cerveja,5.0F;
+Bonas Lanches,150,150-Marmitona, 30.0F;
+Restaurante do Diego Ruim,150,150-Coxinha,10.0F;

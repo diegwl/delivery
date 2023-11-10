@@ -64,7 +64,7 @@ public class Shopping extends JPanel  {
 
     public void setUser(User user) {
         this.user = user;
-        userName.setText(Objects.equals(user.getName(), "") ?"admin":user.getName());
+        userName.setText(Objects.equals(user.getName(), "") ? "admin" : user.getName());
         updateRequests();
     }
 

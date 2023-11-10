@@ -177,7 +177,7 @@ public class App extends JFrame {
                 return false;
             }
         }
-        rests.add(new Restaurant(idRes, nome, x,y));
+        rests.add(new Restaurant(idRes, nome, x, y));
         idRes += 1;
         if (showMessage){
             bc.addRestaurant(nome, x, y);
@@ -370,6 +370,7 @@ public class App extends JFrame {
             cart.setVisible(false);
 
             quietus.setModelQuietus(cart.getModelRequests());
+            bc.addOrder(cart.getAllRequests());
             quietus.refresh();
             quietus.setVisible(true);
             setContentPane(quietus);

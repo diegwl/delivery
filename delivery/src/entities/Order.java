@@ -42,7 +42,7 @@ public class Order {
         this.y = y;
     }
 
-    public Order(int id,Restaurant restaurantOrder, User userOrder) {
+    public Order(int id, Restaurant restaurantOrder, User userOrder) {
         this.id = id;
         this.restaurantOrder = restaurantOrder;
         this.userOrder = userOrder;
@@ -85,8 +85,6 @@ public class Order {
     }
 
     public void removePedido(Food food, boolean keepWish){
-        // NAO TA IMPRIMINDO CERTO ARRUMAR
-
         int index = 0;
         int qtd = 1;
         int newQtd = 0;
@@ -120,7 +118,7 @@ public class Order {
                 "id=" + id +
                 ", restaurantPedido=" + restaurantOrder.getName() +
                 ", usuarioPedido=" + userOrder.getName() +
-                ", foods=" + Arrays.toString(foodsCart.toArray()) +
+                ", foods=" + Arrays.toString(foodsCart.toArray()).replaceAll(" ", "") +
                 ", finalizado=" + finalizado +
 //                ", quantity=" + Arrays.toString(foodsCart.toArray()) +
                 '}';
